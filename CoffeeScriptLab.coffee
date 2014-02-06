@@ -58,3 +58,87 @@ spliceTwo = (arr) -> arr[..2] = [0, 1, 2]
 describe "testing splicing 1", ->
   it "should return an array [0, 1, 2]", ->
     assert.deepEqual(spliceTwo([3, 4, 5]), [0, 1, 2])
+
+spliceThree = (arr) -> arr[0..2] = [5,6,7]
+
+describe "testing splicing 3", ->
+  it "should return an array [5, 6, 7, 4, 5, 6]", ->
+    assert.deepEqual(spliceThree([1,2,3,4,5,6]), [5,6,7])
+
+notNullAndNotZero = (int) -> true if int? and not 0
+
+describe "testing Existential operators 1", ->
+  it "should return true", ->
+    assert.deepEqual(notNullAndNotZero(7), true)
+
+
+speedLimit = (int) -> 'too fast' if int is 70 or 71
+
+describe "testing Existential operators 2",->
+  it "should return 'too fast'", ->
+    assert.equal(speedLimit(70), 'too fast')
+
+greaterThanOther = (a, b) -> if a? and b? and a > b
+    a
+  else b
+
+describe "testing Existential operators 3", ->
+  it "should return 3", ->
+    assert.equal(greaterThanOther(2, 3), 3)
+
+
+oneOrTwo =(num) ->if num is 1 or 2 then true else false
+
+describe "testing aliases 1", ->
+  it "should return true", ->
+    assert.deepEqual(oneOrTwo(1),true)
+
+go = (boolean) -> if boolean isnt no and on then "do it" else "don't do it"
+
+describe "testing aliases 2", ->
+  it "should return 'do it'", ->
+    assert.equal(go(true), "do it")
+
+alwaysTrue = (vari) -> true if on and not off
+
+describe "testing aliases 3", ->
+  it "should always return true", ->
+    assert.deepEqual(alwaysTrue(1), true)
+
+
+person =
+  name: "Henry"
+  age: 20
+  sex: "male"
+
+nameAndAge = -> return person.name + " - " + person.age
+
+describe "testing destructuring 1", ->
+  it "should return 'Henry - 20' ", ->
+    assert.equal(nameAndAge(), "Henry - 20")
+
+decisions =
+  yes: "yes"
+  no: "no"
+  maybe: "maybe"
+
+yesOrNo = -> return decisions.yes
+
+describe "testing destructuring 2", ->
+  it "should return yes", ->
+    assert.equal(yesOrNo(), "yes")
+
+thingyOne = 100
+thingyTwo = 0
+
+switchThem = ->
+  [thingyOne, thingyTwo] = [thingyTwo, thingyOne]
+  return thingyOne
+
+
+describe "testing destructurting 3", ->
+  it "should return 0", ->
+    assert.equal(switchThem(), 0)
+
+describe "testing splat 1", ->
+  i
