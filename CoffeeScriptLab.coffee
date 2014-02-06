@@ -140,5 +140,13 @@ describe "testing destructurting 3", ->
   it "should return 0", ->
     assert.equal(switchThem(), 0)
 
+first = second = third = "hi"
+
+firstWord = (first, others...)->
+  others = "there"
+  first = "hi"
+  return first
+
 describe "testing splat 1", ->
-  i
+  it "should return 'hi'", ->
+    assert.equal(firstWord(), "hi")
