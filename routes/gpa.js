@@ -11,10 +11,10 @@
   numbersToArray = function(grade1, grade2, grade3, grade4) {
     var gradesArr;
     gradesArr = [0, 0, 0, 0];
-    gradesArr[0] = gradesToNumbers(grade1);
-    gradesArr[1] = gradesToNumbers(grade2);
-    gradesArr[2] = gradesToNumbers(grade3);
-    gradesArr[3] = gradesToNumbers(grade4);
+    gradesArr[0] = grade1;
+    gradesArr[1] = grade2;
+    gradesArr[2] = grade3;
+    gradesArr[3] = grade4;
     return gradesArr;
   };
 
@@ -29,10 +29,11 @@
   };
 
   gradeIt = function(grades, credits) {
-    var creditTotal, gradeCredits;
+    var creditTotal, gpa, gradeCredits;
     gradeCredits = grades[0] * credits[0] + grades[1] * credits[1] + grades[2] * credits[2] + grades[3] * credits[3];
     creditTotal = credits[0] + credits[1] + credits[2] + credits[3];
-    return gradeCredits / creditTotal;
+    gpa = (gradeCredits / creditTotal).toFixed(3);
+    return gpa;
   };
 
   exports.gpaResponse = function(req, res) {
@@ -42,6 +43,12 @@
   exports.gpaPostResponse = function(req, res) {
     return res.send(headerStr + formString + '<p>Your GPA is ' + gradeIt(numbersToArray(req.body.class1.grade1.value, req.body.class2.grade2.value, req.body.class3.grade3.value, req.body.class4.grade4.value), creditsToArr(req.body.class1.credit1.value, req.body.class2.credit2.value, req.body.class3.credit3.value, req.body.class4.credit4.value)) + '</p>' + footerStr);
   };
+
+  module.exports.numbersToArray = numbersToArray;
+
+  module.exports.creditsToArr = creditsToArr;
+
+  module.exports.gradeIt = gradeIt;
 
 }).call(this);
 
