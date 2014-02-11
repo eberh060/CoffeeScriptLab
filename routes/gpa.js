@@ -41,7 +41,7 @@
   };
 
   exports.gpaPostResponse = function(req, res) {
-    return res.send(headerStr + formString + '<p>Your GPA is ' + gradeIt(numbersToArray(req.body.class1.grade1.value, req.body.class2.grade2.value, req.body.class3.grade3.value, req.body.class4.grade4.value), creditsToArr(req.body.class1.credit1.value, req.body.class2.credit2.value, req.body.class3.credit3.value, req.body.class4.credit4.value)) + '</p>' + footerStr);
+    return res.send(headerStr + formString + '<p>Your GPA is ' + gradeIt(numbersToArray(req.body.grade1, req.body.grade2, req.body.grade3, req.body.grade4), creditsToArr(req.body.credit1, req.body.credit2, req.body.credit3, req.body.credit4)) + '</p>' + footerStr);
   };
 
   module.exports.numbersToArray = numbersToArray;
