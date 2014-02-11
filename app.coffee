@@ -5,6 +5,7 @@ Module dependencies.
 express = require("express")
 routes = require("./routes")
 user = require("./routes/user")
+gpa = require("./routes/gpa")
 http = require("http")
 path = require("path")
 app = express()
@@ -26,5 +27,7 @@ app.use express.static(path.join(__dirname, "public"))
 app.use express.errorHandler()  if "development" is app.get("env")
 app.get "/", routes.index
 app.get "/users", user.list
+app.get "/gpa", gpa.gpaResponse
+app.post "/gpa", gpa.gpaPostResponse
 http.createServer(app).listen app.get("port"), ->
     console.log "Express server listening on port " + app.get("port")
