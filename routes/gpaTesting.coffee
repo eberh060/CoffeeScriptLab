@@ -2,10 +2,11 @@ assert = require 'assert'
 gradeIt = require('./gpa').gradeIt
 creditsToArr = require('./gpa').creditsToArr
 numbersToArray = require('./gpa').numbersToArray
+gradesToNumbers = require('./gpa').gradesToNumbers
 
 describe "testing numbersToArray", ->
   it "should return array [4,3.666,2.666,1]", ->
-    assert.deepEqual(numbersToArray(4,3.666,2.666,1),[4,3.666,2.666,1])
+    assert.deepEqual(numbersToArray("A","A-","B-","D"),[4,3.666,2.666,1])
 
 describe "testing creditsToArr", ->
   it "should return array [1,2,3,5]", ->
@@ -23,3 +24,9 @@ describe "testing gradeIt", ->
   describe "test 3", ->
     it "should return 2.972", ->
       assert.equal(gradeIt([2.666,1,4,3.333],[1,3,5,3]), 2.972)
+
+describe "testing gradesToNumbers", ->
+  describe "test 1", ->
+    it "should return 3", ->
+      assert.equal(gradesToNumbers("B"), 3)
+
