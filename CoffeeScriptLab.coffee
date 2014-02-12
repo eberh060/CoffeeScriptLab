@@ -150,3 +150,50 @@ firstWord = (first, others...)->
 describe "testing splat 1", ->
   it "should return 'hi'", ->
     assert.equal(firstWord(), "hi")
+
+secondWord = (second, others...) ->
+  others = "loser"
+  second = "hi"
+  return second
+
+describe "testing splat 2", ->
+  it "should return 'hi'", ->
+    assert.equal(secondWord(), "hi")
+
+theBest = theSecondBest = theworst = "unknown"
+
+bestWayAround = (vehicle1, vehicle2 , others...) ->
+  theBest = vehicle1
+  theSecondBest = vehicle2
+  theworst = others
+
+describe "testing splat 3", ->
+  it "should return 'bicycle'", ->
+    vehicles = ["bicycle","bus","car"]
+    bestWayAround vehicles...
+    assert.equal(theBest, "bicycle")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
